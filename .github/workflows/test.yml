@@ -15,15 +15,15 @@ jobs:
     runs-on: ubuntu-22.04
     strategy:
       matrix:
-        releasever: [rawhide, 44, 43]
+        releasever: [rawhide, 44, 43, 42]
     container:
       image: ghcr.io/terrapkg/builder:f${{ matrix.releasever }}
       options: --cap-add=SYS_ADMIN --privileged
     steps:
-      - name: Checkout Terra repository
+      - name: Checkout Ultramarine repository
         uses: actions/checkout@v4
         with:
-          repository: terrapkg/packages
+          repository: Ultramarine-Linux/packages
           fetch-depth: 0
       - name: Checkout Mock Configs
         uses: actions/checkout@v4
@@ -35,10 +35,10 @@ jobs:
         run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
 
       - name: Include custom build template instead of package default
-        run: cp -v mock-configs/terra*.tpl /etc/mock/templates/
+        run: cp -v mock-configs/ultramarine*.tpl /etc/mock/templates/
 
       - name: Build with Andaman
-        run: anda build terra/mock-configs -c mock-configs/terra-${{ matrix.releasever }}-x86_64.cfg
+        run: anda build ultramarine/mock-configs -c mock-configs/ultramarine-${{ matrix.releasever }}-x86_64.cfg
 
       - name: Generating artifact name
         id: art
