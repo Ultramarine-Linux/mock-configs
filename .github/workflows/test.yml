@@ -29,13 +29,13 @@ jobs:
         uses: actions/checkout@v6
         with:
           fetch-depth: 0
-          path: ultramarine
+          path: mock-configs
 
       - name: Set up git repository
         run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
 
       - name: Include custom build template instead of package default
-        run: cp -v ./ultramarine*.tpl /etc/mock/templates/
+        run: cp -v mock-configs/ultramarine*.tpl /etc/mock/templates/
 
       - name: Build with Andaman
         run: anda build ultramarine-mock-configs/mock-configs -c mock-configs/ultramarine-${{ matrix.releasever }}-x86_64.cfg
