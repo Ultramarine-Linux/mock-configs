@@ -7,7 +7,8 @@ config_opts['macros']['%dist'] = '.um{{ releasever }}'
 config_opts['macros']['%ultramarine'] = '{{ releasever }}'
 config_opts['mirrored'] = config_opts['target_arch'] != 'i686'
 config_opts['chroot_setup_cmd'] = 'install @{% if mirrored %}buildsys-{% endif %}build'
-config_opts['buildroot_pkgs'] = 'terra-release terra-release-extras ultramarine-release ultramarine-release-basic'
+config_opts['chroot_additional_packages'] = ['anda-srpm-macros', 'terra-appstream-helper', 'mold']
+config_opts['buildroot_pkgs'] = 'ultramarine-release ultramarine-release-basic'
 config_opts['package_manager'] = 'dnf5'
 config_opts['extra_chroot_dirs'] = [ '/run/lock', ]
 config_opts['plugin_conf']['root_cache_enable'] = True
@@ -21,7 +22,7 @@ dnf_conf = """
 [main]
 keepcache=1
 debuglevel=2a
-#reposdir=/dev/null
+reposdir=/dev/null
 logfile=/var/log/yum.log
 retries=20
 obsoletes=1
@@ -91,7 +92,7 @@ enabled=1
 enabled_metadata=1
 metadata_expire=0
 
-[local]
+[local-rawhide-build]
 name=local
 baseurl=https://kojipkgs.fedoraproject.org/repos/rawhide/latest/$basearch/
 cost=2000
