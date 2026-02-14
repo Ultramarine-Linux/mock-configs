@@ -12,10 +12,11 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-22.04
     strategy:
       matrix:
         releasever: [rawhide, 44, 43, 42]
+        arch: [x86_64, aarch64]
+    runs-on: ${{ matrix.arch == 'aarch64' && 'ubuntu-22.04-arm' || 'ubuntu-latest' }}
     container:
       image: ghcr.io/terrapkg/builder:f${{ matrix.releasever }}
       options: --cap-add=SYS_ADMIN --privileged
@@ -38,18 +39,18 @@ jobs:
         run: cp -v mock-configs/ultramarine*.tpl /etc/mock/templates/
 
       - name: Build with Andaman
-        run: anda build ultramarine-mock-configs -c mock-configs/ultramarine-${{ matrix.releasever }}-x86_64.cfg
+        run: anda build ultramarine-mock-configs -c mock-configs/ultramarine-${{ matrix.releasever }}-${{ matrix.arch }}.cfg
 
       - name: Generating artifact name
         id: art
         run: |
-          NAME=${{ matrix.pkg.pkg }}-${{ matrix.pkg.arch }}-${{ matrix.version }}
+          NAME=ultramarine-mock-configs-${{ matrix.arch }}-${{ matrix.releasever }}
           x=${NAME//\//@}
           echo "name=$x" >> $GITHUB_OUTPUT
 
       - uses: actions/upload-artifact@v6
         with:
-          name: mock-configs-f${{ matrix.releasever }}
+          name: ${{ steps.art.outputs.name }}
           compression-level: 0 # The RPMs are already compressed :p
           path: |
             anda-build/rpm/rpms/*
