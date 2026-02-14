@@ -81,6 +81,14 @@ repo_gpgcheck=1
 enabled=1
 enabled_metadata=1
 
+[local-f{{ releasever }}-build]
+name=local
+baseurl=https://kojipkgs.fedoraproject.org/repos/f{{ releasever }}-build/latest/$basearch/
+cost=2000
+# enabled only if not mirrored, and not rawhide
+enabled={% if not mirrored %}1{% else %}0{% endif %}
+skip_if_unavailable=False
+
 {% if mirrored %}
 [fedora]
 name=fedora

@@ -96,14 +96,7 @@ name=local-rawhide
 baseurl=https://kojipkgs.fedoraproject.org/repos/rawhide/latest/$basearch/
 cost=2000
 # enabled only if not mirrored, and rawhide
-enabled={% if not mirrored and releasever == 'rawhide' %}1{% else %}0{% endif %}
-skip_if_unavailable=False
-
-[local]
-name=local
-baseurl=https://kojipkgs.fedoraproject.org/repos/rawhide/latest/$basearch/
-cost=2000
-enabled={{ not mirrored }}
+enabled={% if not mirrored %}1{% else %}0{% endif %}
 skip_if_unavailable=False
 
 {% if mirrored %}
