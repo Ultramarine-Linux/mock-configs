@@ -1,0 +1,104 @@
+config_opts['root'] = 'ultramarine-{{ releasever }}-{{ target_arch }}'
+config_opts['dist'] = 'um{{ releasever }}'  # only useful for --resultdir variable subst
+config_opts['macros']['%dist'] = '.um{{ releasever }}'
+config_opts['macros']['%ultramarine'] = '{{ releasever }}'
+config_opts['chroot_setup_cmd'] = 'install @buildsys-build'
+config_opts['buildroot_pkgs'] = 'terra-release terra-release-extras ultramarine-release ultramarine-release-basic'
+config_opts['package_manager'] = 'dnf5'
+config_opts['extra_chroot_dirs'] = [ '/run/lock', ]
+config_opts['mirrored'] = True
+config_opts['plugin_conf']['root_cache_enable'] = True
+config_opts['plugin_conf']['yum_cache_enable'] = True
+config_opts['plugin_conf']['ccache_enable'] = int(config_opts['releasever']) < 44 or int(config_opts['releasever']) >= 44 and config_opts['target_arch'] != 'i686'
+config_opts['plugin_conf']['ccache_opts']['compress'] = 'on'
+config_opts['plugin_conf']['ccache_opts']['max_cache_size'] = '10G'
+# repos
+dnf_conf = """
+
+[main]
+keepcache=1
+debuglevel=2a
+#reposdir=/dev/null
+logfile=/var/log/yum.log
+retries=20
+obsoletes=1
+gpgcheck=0
+assumeyes=1
+syslog_ident=mock
+exclude = fedora-release*
+syslog_device=
+install_weak_deps=0
+metadata_expire=0
+best=1
+module_platform_id=platform:um{{ releasever }}
+protected_packages=
+user_agent={{ user_agent }}
+
+[ultramarine]
+name=ultramarine
+baseurl=https://repos.fyralabs.com/um$releasever/
+type=rpm-md
+skip_if_unavailable=False
+gpgcheck=1
+gpgkey=https://repos.fyralabs.com/um$releasever/key.asc
+repo_gpgcheck=1
+enabled=1
+enabled_metadata=1
+priority=50
+
+[terra]
+name=Terra $releasever
+baseurl=https://repos.fyralabs.com/terra$releasever
+type=rpm-md
+skip_if_unavailable=False
+gpgcheck=1
+gpgkey=https://repos.fyralabs.com/terra$releasever/key.asc
+repo_gpgcheck=1
+enabled=1
+enabled_metadata=1
+#metadata_expire=4h
+
+[terra-extras]
+name=Terra $releasever (Extras)
+metalink=https://tetsudou.fyralabs.com/metalink?repo=terra$releasever-extras&arch=$basearch
+metadata_expire=6h
+type=rpm
+gpgcheck=1
+gpgkey=https://repos.fyralabs.com/terra$releasever-extras/key.asc
+repo_gpgcheck=1
+enabled=1
+enabled_metadata=1
+priority=150
+
+[terra-mesa]
+name=Terra $releasever (Mesa)
+metalink=https://tetsudou.fyralabs.com/metalink?repo=terra$releasever-mesa&arch=$basearch
+metadata_expire=6h
+type=rpm
+gpgcheck=1
+gpgkey=https://repos.fyralabs.com/terra$releasever-mesa/key.asc
+repo_gpgcheck=1
+enabled=1
+enabled_metadata=1
+
+{% if mirrored %}
+[fedora]
+name=fedora
+metalink=https://mirrors.fedoraproject.org/metalink?repo=fedora-$releasever&arch=$basearch
+gpgkey=file:///usr/share/distribution-gpg-keys/fedora/RPM-GPG-KEY-fedora-{{ releasever }}-primary
+gpgcheck=1
+skip_if_unavailable=False
+exclude=fedora-release*
+
+[updates]
+name=updates
+metalink=https://mirrors.fedoraproject.org/metalink?repo=updates-released-f$releasever&arch=$basearch
+gpgkey=file:///usr/share/distribution-gpg-keys/fedora/RPM-GPG-KEY-fedora-{{ releasever }}-primary
+gpgcheck=1
+skip_if_unavailable=False
+{% endif %}
+"""
+
+
+config_opts['dnf.conf'] = dnf_conf
+config_opts['dnf5.conf'] = dnf_conf
