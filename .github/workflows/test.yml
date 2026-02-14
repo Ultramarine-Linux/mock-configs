@@ -38,7 +38,7 @@ jobs:
         run: cp -v mock-configs/ultramarine*.tpl /etc/mock/templates/
 
       - name: Build with Andaman
-        run: anda build ultramarine-mock-configs/mock-configs -c mock-configs/ultramarine-${{ matrix.releasever }}-x86_64.cfg
+        run: anda build ultramarine-mock-configs -c mock-configs/ultramarine-${{ matrix.releasever }}-x86_64.cfg
 
       - name: Generating artifact name
         id: art
