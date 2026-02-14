@@ -95,7 +95,7 @@ metadata_expire=0
 name=local
 baseurl=https://kojipkgs.fedoraproject.org/repos/rawhide/latest/$basearch/
 cost=2000
-enabled={% if not mirrored %}1{% else %}0{% endif %}
+enabled={{ not mirrored }}
 skip_if_unavailable=False
 
 {% if mirrored %}
