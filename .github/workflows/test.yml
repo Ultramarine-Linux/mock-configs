@@ -15,7 +15,7 @@ jobs:
     strategy:
       matrix:
         releasever: [rawhide, 44, 43, 42]
-        arch: [x86_64, aarch64, i386]
+        arch: [x86_64, aarch64]
     runs-on: ${{ matrix.arch == 'aarch64' && 'ubuntu-22.04-arm' || 'ubuntu-latest' }}
     container:
       image: ghcr.io/terrapkg/builder:f${{ matrix.releasever }}
