@@ -91,11 +91,11 @@ enabled=1
 enabled_metadata=1
 metadata_expire=0
 
-[local-rawhide-build]
-name=local-rawhide
+[local]
+name=local
 baseurl=https://kojipkgs.fedoraproject.org/repos/rawhide/latest/$basearch/
 cost=2000
-# enabled only if not mirrored, and rawhide
+enabled={{ not mirrored }}
 enabled={% if not mirrored %}1{% else %}0{% endif %}
 skip_if_unavailable=False
 
