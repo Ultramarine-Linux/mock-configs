@@ -92,7 +92,7 @@ enabled=1
 enabled_metadata=1
 metadata_expire=0
 
-[local]
+[local-rawhide-build]
 name=local
 baseurl=https://kojipkgs.fedoraproject.org/repos/rawhide/latest/$basearch/
 cost=2000

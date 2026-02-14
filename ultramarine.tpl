@@ -82,7 +82,7 @@ repo_gpgcheck=1
 enabled=1
 enabled_metadata=1
 
-[local]
+[local-f{{ releasever }}-build]
 name=local
 baseurl=https://kojipkgs.fedoraproject.org/repos/f{{ releasever }}-build/latest/$basearch/
 cost=2000
