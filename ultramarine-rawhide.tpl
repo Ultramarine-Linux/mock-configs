@@ -46,7 +46,7 @@ file:///usr/share/distribution-gpg-keys/fedora/RPM-GPG-KEY-fedora-$releasever-pr
 {%- endmacro %}
 
 [ultramarine]
-name=Ultramarine
+name=Ultramarine Linux $releasever
 baseurl=https://repos.fyralabs.com/um$releasever/
 type=rpm-md
 skip_if_unavailable=False

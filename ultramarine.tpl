@@ -36,7 +36,7 @@ protected_packages=
 user_agent={{ user_agent }}
 
 [ultramarine]
-name=Ultramarine
+name=Ultramarine Linux $releasever
 baseurl=https://repos.fyralabs.com/um$releasever/
 type=rpm-md
 skip_if_unavailable=False
