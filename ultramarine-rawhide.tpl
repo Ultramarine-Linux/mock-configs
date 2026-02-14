@@ -97,6 +97,7 @@ name=local
 baseurl=https://kojipkgs.fedoraproject.org/repos/rawhide/latest/$basearch/
 cost=2000
 enabled={{ not mirrored }}
+excludepkgs=fedora-repos,fedora-gpg-keys
 skip_if_unavailable=False
 
 {% if mirrored %}
