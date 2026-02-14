@@ -29,7 +29,6 @@ obsoletes=1
 gpgcheck=0
 assumeyes=1
 syslog_ident=mock
-exclude = fedora-release*
 syslog_device=
 install_weak_deps=0
 metadata_expire=0
