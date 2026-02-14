@@ -21,12 +21,12 @@ jobs:
       options: --cap-add=SYS_ADMIN --privileged
     steps:
       - name: Checkout Ultramarine repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           repository: Ultramarine-Linux/packages
           fetch-depth: 0
       - name: Checkout Mock Configs
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
           path: ultramarine
