@@ -2,11 +2,11 @@ config_opts['root'] = 'ultramarine-{{ releasever }}-{{ target_arch }}'
 config_opts['dist'] = 'um{{ releasever }}'  # only useful for --resultdir variable subst
 config_opts['macros']['%dist'] = '.um{{ releasever }}'
 config_opts['macros']['%ultramarine'] = '{{ releasever }}'
-config_opts['chroot_setup_cmd'] = 'install @buildsys-build'
+config_opts['mirrored'] = config_opts['target_arch'] != 'i686'
+config_opts['chroot_setup_cmd'] = 'install @{% if mirrored %}buildsys-{% endif %}build'
 config_opts['buildroot_pkgs'] = 'terra-release terra-release-extras ultramarine-release ultramarine-release-basic'
 config_opts['package_manager'] = 'dnf5'
 config_opts['extra_chroot_dirs'] = [ '/run/lock', ]
-config_opts['mirrored'] = True
 config_opts['plugin_conf']['root_cache_enable'] = True
 config_opts['plugin_conf']['yum_cache_enable'] = True
 config_opts['plugin_conf']['ccache_enable'] = int(config_opts['releasever']) < 44 or int(config_opts['releasever']) >= 44 and config_opts['target_arch'] != 'i686'
@@ -35,7 +35,7 @@ protected_packages=
 user_agent={{ user_agent }}
 
 [ultramarine]
-name=ultramarine
+name=Ultramarine
 baseurl=https://repos.fyralabs.com/um$releasever/
 type=rpm-md
 skip_if_unavailable=False
@@ -80,6 +80,13 @@ gpgkey=https://repos.fyralabs.com/terra$releasever-mesa/key.asc
 repo_gpgcheck=1
 enabled=1
 enabled_metadata=1
+
+[local]
+name=local
+baseurl=https://kojipkgs.fedoraproject.org/repos/f{{ releasever }}-build/latest/$basearch/
+cost=2000
+enabled={{ not mirrored }}
+skip_if_unavailable=False
 
 {% if mirrored %}
 [fedora]
