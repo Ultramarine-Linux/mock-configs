@@ -8,7 +8,7 @@ config_opts['macros']['%ultramarine'] = '{{ releasever }}'
 config_opts['mirrored'] = config_opts['target_arch'] != 'i686'
 config_opts['chroot_setup_cmd'] = 'install @{% if mirrored %}buildsys-{% endif %}build'
 config_opts['buildroot_pkgs'] = 'terra-release terra-release-extras terra-release-mesa ultramarine-release ultramarine-release-basic'
-config_opts['chroot_additional_packages'] = ['ultramarine-release', 'ultramarine-release-basic', 'anda-srpm-macros', 'terra-appstream-helper', 'mold']
+config_opts['chroot_additional_packages'] = ['ultramarine-release', ultramarine-release-basic' 'anda-srpm-macros', 'terra-appstream-helper', 'mold']
 config_opts['package_manager'] = 'dnf5'
 config_opts['extra_chroot_dirs'] = [ '/run/lock', ]
 config_opts['plugin_conf']['root_cache_enable'] = True
@@ -22,13 +22,14 @@ dnf_conf = """
 [main]
 keepcache=1
 debuglevel=2a
-#reposdir=/dev/null
+reposdir=/dev/null
 logfile=/var/log/yum.log
 retries=20
 obsoletes=1
 gpgcheck=0
 assumeyes=1
 syslog_ident=mock
+exclude = fedora-release*
 syslog_device=
 install_weak_deps=0
 metadata_expire=0
