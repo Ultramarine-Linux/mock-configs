@@ -35,7 +35,7 @@ protected_packages=
 user_agent={{ user_agent }}
 
 [ultramarine]
-name=ultramarine
+name=Ultramarine
 baseurl=https://repos.fyralabs.com/um$releasever/
 type=rpm-md
 skip_if_unavailable=False
