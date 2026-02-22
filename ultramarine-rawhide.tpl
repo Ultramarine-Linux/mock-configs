@@ -98,6 +98,7 @@ baseurl=https://kojipkgs.fedoraproject.org/repos/rawhide/latest/$basearch/
 cost=2000
 enabled={{ not mirrored }}
 skip_if_unavailable=False
+excludepkgs=fedora-release*
 
 {% if mirrored %}
 [fedora]
@@ -106,6 +107,7 @@ metalink=https://mirrors.fedoraproject.org/metalink?repo=rawhide&arch=$basearch
 gpgkey={{ rawhide_gpg_keys() }}
 gpgcheck=1
 skip_if_unavailable=False
+excludepkgs=fedora-release*
 {% endif %}
 """
 
