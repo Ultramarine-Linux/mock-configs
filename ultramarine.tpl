@@ -37,7 +37,7 @@ user_agent={{ user_agent }}
 
 [ultramarine]
 name=Ultramarine Linux $releasever
-baseurl=https://repos.fyralabs.com/um$releasever/
+metalink=https://tetsudou.fyralabs.com/metalink?repo=um$releasever&arch=$basearch
 type=rpm-md
 skip_if_unavailable=False
 gpgcheck=1
@@ -49,7 +49,7 @@ priority=50
 
 [terra]
 name=Terra $releasever
-baseurl=https://repos.fyralabs.com/terra$releasever
+metalink=https://tetsudou.fyralabs.com/metalink?repo=terra$releasever&arch=$basearch
 type=rpm-md
 skip_if_unavailable=False
 gpgcheck=1
