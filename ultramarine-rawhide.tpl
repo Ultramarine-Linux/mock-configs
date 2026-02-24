@@ -47,7 +47,7 @@ file:///usr/share/distribution-gpg-keys/fedora/RPM-GPG-KEY-fedora-$releasever-pr
 
 [ultramarine]
 name=Ultramarine Linux $releasever
-metalink=https://tetsudou.fyralabs.com/metalink?repo=um$releasever&arch=$basearch
+baseurl=https://repos.fyralabs.com/um$releasever
 type=rpm-md
 skip_if_unavailable=False
 gpgcheck=1
@@ -59,7 +59,7 @@ priority=50
 
 [terra]
 name=Terra $releasever
-metalink=https://tetsudou.fyralabs.com/metalink?repo=terra$releasever&arch=$basearch
+baseurl=https://repos.fyralabs.com/terra$releasever
 type=rpm-md
 skip_if_unavailable=False
 gpgcheck=1
@@ -71,7 +71,7 @@ enabled_metadata=1
 
 [terra-extras]
 name=Terra $releasever (Extras)
-metalink=https://tetsudou.fyralabs.com/metalink?repo=terra$releasever-extras&arch=$basearch
+baseurl=https://repos.fyralabs.com/terra$releasever-extras
 type=rpm
 gpgcheck=1
 repo_gpgcheck=1
@@ -83,7 +83,7 @@ metadata_expire=0
 
 [terra-mesa]
 name=Terra $releasever (Mesa)
-metalink=https://tetsudou.fyralabs.com/metalink?repo=terra$releasever-mesa&arch=$basearch
+baseurl=https://repos.fyralabs.com/terra$releasever-mesa
 type=rpm
 gpgcheck=1
 repo_gpgcheck=1
