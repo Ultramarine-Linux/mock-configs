@@ -88,6 +88,7 @@ baseurl=https://kojipkgs.fedoraproject.org/repos/f{{ releasever }}-build/latest/
 cost=2000
 enabled={{ not mirrored }}
 skip_if_unavailable=False
+excludepkgs=fedora-release*
 
 {% if mirrored %}
 [fedora]
@@ -104,6 +105,7 @@ metalink=https://mirrors.fedoraproject.org/metalink?repo=updates-released-f$rele
 gpgkey=file:///usr/share/distribution-gpg-keys/fedora/RPM-GPG-KEY-fedora-{{ releasever }}-primary
 gpgcheck=1
 skip_if_unavailable=False
+excludepkgs=fedora-release*
 {% endif %}
 """
 

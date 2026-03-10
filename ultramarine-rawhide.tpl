@@ -9,7 +9,7 @@ config_opts['mirrored'] = config_opts['target_arch'] != 'i686'
 config_opts['chroot_setup_cmd'] = 'install @{% if mirrored %}buildsys-{% endif %}build'
 config_opts['chroot_additional_packages'] = ['anda-srpm-macros', 'terra-appstream-helper', 'mold']
 config_opts['buildroot_pkgs'] = 'ultramarine-release ultramarine-release-basic'
-config_opts['package_manager'] = 'dnf5'
+config_opts['package_manager'] = 'dnf4'
 config_opts['extra_chroot_dirs'] = [ '/run/lock', ]
 config_opts['plugin_conf']['root_cache_enable'] = True
 config_opts['plugin_conf']['yum_cache_enable'] = True
@@ -98,6 +98,7 @@ baseurl=https://kojipkgs.fedoraproject.org/repos/rawhide/latest/$basearch/
 cost=2000
 enabled={{ not mirrored }}
 skip_if_unavailable=False
+excludepkgs=fedora-release*
 
 {% if mirrored %}
 [fedora]
@@ -106,6 +107,7 @@ metalink=https://mirrors.fedoraproject.org/metalink?repo=rawhide&arch=$basearch
 gpgkey={{ rawhide_gpg_keys() }}
 gpgcheck=1
 skip_if_unavailable=False
+excludepkgs=fedora-release*
 {% endif %}
 """
 
