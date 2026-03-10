@@ -47,11 +47,11 @@ file:///usr/share/distribution-gpg-keys/fedora/RPM-GPG-KEY-fedora-$releasever-pr
 
 [ultramarine]
 name=Ultramarine Linux $releasever
-baseurl=https://repos.fyralabs.com/um$releasever/
+baseurl=https://repos.fyralabs.com/um$releasever
 type=rpm-md
 skip_if_unavailable=False
 gpgcheck=1
-gpgkey=https://repos.fyralabs.com/um$releasever/key.asc
+gpgkey=file:///etc/pki/mock/RPM-GPG-KEY-um$releasever
 repo_gpgcheck=1
 enabled=1
 enabled_metadata=1
@@ -63,7 +63,7 @@ baseurl=https://repos.fyralabs.com/terra$releasever
 type=rpm-md
 skip_if_unavailable=False
 gpgcheck=1
-gpgkey=https://repos.fyralabs.com/terra$releasever/key.asc
+gpgkey=file:///etc/pki/mock/RPM-GPG-KEY-terra$releasever
 repo_gpgcheck=1
 enabled=1
 enabled_metadata=1
@@ -71,11 +71,11 @@ enabled_metadata=1
 
 [terra-extras]
 name=Terra $releasever (Extras)
-metalink=https://tetsudou.fyralabs.com/metalink?repo=terra$releasever-extras&arch=$basearch
+baseurl=https://repos.fyralabs.com/terra$releasever-extras
 type=rpm
 gpgcheck=1
 repo_gpgcheck=1
-gpgkey=https://repos.fyralabs.com/terra$releasever-extras/key.asc
+gpgkey=file:///etc/pki/mock/RPM-GPG-KEY-terra$releasever-extras
 enabled=1
 priority=150
 enabled_metadata=1
@@ -83,11 +83,11 @@ metadata_expire=0
 
 [terra-mesa]
 name=Terra $releasever (Mesa)
-metalink=https://tetsudou.fyralabs.com/metalink?repo=terra$releasever-mesa&arch=$basearch
+baseurl=https://repos.fyralabs.com/terra$releasever-mesa
 type=rpm
 gpgcheck=1
 repo_gpgcheck=1
-gpgkey=https://repos.fyralabs.com/terra$releasever-mesa/key.asc
+gpgkey=file:///etc/pki/mock/RPM-GPG-KEY-terra$releasever-mesa
 enabled=1
 enabled_metadata=1
 metadata_expire=0
