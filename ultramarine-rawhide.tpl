@@ -102,7 +102,7 @@ excludepkgs=fedora-release*
 
 {% if mirrored %}
 [fedora]
-name=fedora
+name=Fedora Rawhide - $basearch
 metalink=https://mirrors.fedoraproject.org/metalink?repo=rawhide&arch=$basearch
 gpgkey={{ rawhide_gpg_keys() }}
 gpgcheck=1
