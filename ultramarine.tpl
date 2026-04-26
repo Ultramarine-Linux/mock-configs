@@ -92,7 +92,7 @@ excludepkgs=fedora-release*
 
 {% if mirrored %}
 [fedora]
-name=fedora
+name=Fedora $releasever - $basearch
 metalink=https://mirrors.fedoraproject.org/metalink?repo=fedora-$releasever&arch=$basearch
 gpgkey=file:///usr/share/distribution-gpg-keys/fedora/RPM-GPG-KEY-fedora-{{ releasever }}-primary
 gpgcheck=1
@@ -100,7 +100,7 @@ skip_if_unavailable=False
 exclude=fedora-release*
 
 [updates]
-name=updates
+name=Fedora $releasever - $basearch - Updates
 metalink=https://mirrors.fedoraproject.org/metalink?repo=updates-released-f$releasever&arch=$basearch
 gpgkey=file:///usr/share/distribution-gpg-keys/fedora/RPM-GPG-KEY-fedora-{{ releasever }}-primary
 gpgcheck=1
