@@ -1,5 +1,5 @@
-# {% set rawhide = 45 %}
-config_opts['rawhide'] = '45'
+# {% set rawhide = 46 %}
+config_opts['rawhide'] = '46'
 
 config_opts['root'] = 'ultramarine-{{ releasever }}-{{ target_arch }}'
 config_opts['dist'] = 'um{{ releasever }}'  # only useful for --resultdir variable subst
